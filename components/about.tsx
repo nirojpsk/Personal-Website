@@ -39,6 +39,7 @@ const experienceItems = [
     institute: 'Broadway Infosys',
     location: 'Kathmandu',
     description: 'Completed a practical fullstack web development course.',
+    image: '/broadway.png',
   },
 ]
 
@@ -104,19 +105,22 @@ export default function About() {
           <div className="w-16 h-[3px] bg-accent rounded-full shadow-[0_0_10px_var(--neon)]" />
         </div>
 
-        <div className="grid md:grid-cols-5 gap-12 items-start">
-          <div className="md:col-span-3 space-y-6 reveal">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I&apos;m a junior fullstack web developer with a passion for creating
-              intuitive and performant web applications.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              My learning path includes SEE, +2 Science, and a BEI degree from
-              Purwanchal Campus, followed by practical training in fullstack web development.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I enjoy turning ideas into clean, interactive web products and improving every day.
-            </p>
+        <div className="grid md:grid-cols-5 gap-12 items-stretch">
+          <div className="md:col-span-3 reveal">
+            <div className="space-y-6">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                I&apos;m <span className="text-foreground font-semibold">Pranit Karki</span>, a 24-year-old aspiring fullstack web developer from
+                <span className="text-foreground font-medium"> Maidhar, Jhapa</span>, focused on building practical and interactive web products.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                I passed SEE from Mechi English Boarding School, Maidhar, Jhapa in 2018 with GPA 3.45, then completed +2 Science
+                from Kanchanjunga English Secondary School, Birtamode, Jhapa in 2020 with CGPA 3.53.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                I graduated in BEI from Purwanchal Campus, Dharan in 2025 with CGPA 3.0 and also completed a 3-month FullStack
+                Web Development course at Broadway Infosys, Kathmandu.
+              </p>
+            </div>
 
             <div className="grid grid-cols-3 gap-6 pt-8">
               {[
@@ -175,6 +179,9 @@ export default function About() {
                   className="spotlight-container edu-card bg-card/60 border border-border rounded-xl p-5 hover:border-accent/30 transition-all duration-300"
                   style={{ animationDelay: `${(educationItems.length + i) * 120}ms` }}
                 >
+                  <div className="edu-image-wrap aspect-[16/8] w-full rounded-lg overflow-hidden border border-border/70 mb-3 bg-secondary">
+                    <img src={item.image} alt={item.institute} className="edu-image w-full h-full object-cover" />
+                  </div>
                   <p className="text-foreground font-semibold">{item.title}</p>
                   <p className="text-muted-foreground text-sm mt-1">
                     {item.institute}, {item.location}

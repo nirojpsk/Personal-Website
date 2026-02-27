@@ -60,7 +60,7 @@ export default function Contact() {
                 hello, feel free to reach out!
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                I&apos;m based in <span className="text-foreground font-medium">Dharan, Nepal</span>, and available for
+                I&apos;m based in <span className="text-foreground font-medium">Jhapa, Nepal</span>, and available for
                 remote work, freelance projects, and full-time positions.
               </p>
             </div>

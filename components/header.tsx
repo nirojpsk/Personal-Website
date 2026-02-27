@@ -103,14 +103,28 @@ export default function Header({ activeSection }: HeaderProps) {
             {/* Mobile Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2.5 rounded-xl border border-border bg-card/60 hover:border-accent/30 transition-all duration-300"
+              className={`md:hidden relative h-12 w-12 rounded-2xl border transition-all duration-300 active:scale-95 ${
+                mobileOpen
+                  ? 'border-accent/45 bg-card'
+                  : 'border-border bg-card/75 hover:border-accent/35 hover:-translate-y-0.5'
+              }`}
               aria-label="Toggle menu"
             >
-              {mobileOpen ? (
-                <X className="w-5 h-5 text-foreground" />
-              ) : (
-                <Menu className="w-5 h-5 text-foreground" />
-              )}
+              <span
+                className={`absolute left-2 top-2 h-1.5 w-1.5 rounded-full bg-accent transition-all duration-300 ${
+                  mobileOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                }`}
+              />
+              <Menu
+                className={`absolute left-1/2 top-1/2 w-5 h-5 -translate-x-1/2 -translate-y-1/2 text-foreground transition-all duration-300 ${
+                  mobileOpen ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
+                }`}
+              />
+              <X
+                className={`absolute left-1/2 top-1/2 w-5 h-5 -translate-x-1/2 -translate-y-1/2 text-foreground transition-all duration-300 ${
+                  mobileOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
+                }`}
+              />
             </button>
           </div>
         </div>
@@ -118,34 +132,49 @@ export default function Header({ activeSection }: HeaderProps) {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-background/98 backdrop-blur-2xl transition-all duration-400 md:hidden flex flex-col items-center justify-center gap-3 ${
+        className={`fixed inset-0 z-40 bg-background/95 backdrop-blur-2xl transition-all duration-400 md:hidden ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        {navLinks.map((link, i) => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={() => setMobileOpen(false)}
-            className={`text-3xl font-bold text-foreground hover:text-accent transition-all duration-300 py-3 ${
-              mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-            }`}
-            style={{ transitionDelay: mobileOpen ? `${i * 80 + 100}ms` : '0ms' }}
-          >
-            {link.label}
-          </a>
-        ))}
-        <a
-          href="mailto:karkibri2073@gmail.com"
-          onClick={() => setMobileOpen(false)}
-          className={`mt-8 px-10 py-4 bg-accent text-accent-foreground rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-[0_0_30px_oklch(0.75_0.22_150_/_0.3)] flex items-center gap-2 ${
-            mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-          }`}
-          style={{ transitionDelay: mobileOpen ? `${navLinks.length * 80 + 100}ms` : '0ms' }}
-        >
-          <Zap className="w-5 h-5" />
-          Hire Me
-        </a>
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[20%] left-[12%] w-24 h-24 rounded-full bg-accent/10 blur-2xl" />
+          <div className="absolute bottom-[18%] right-[10%] w-28 h-28 rounded-full bg-[var(--neon-cyan)]/12 blur-2xl" />
+        </div>
+
+        <div className="h-full overflow-y-auto px-6 pt-28 pb-24 flex items-center justify-center">
+          <div className="w-full max-w-md space-y-3">
+            {navLinks.map((link, i) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className={`group relative flex items-center justify-between rounded-2xl border border-border/80 bg-card/60 px-5 py-4 transition-all duration-300 hover:border-accent/40 hover:bg-card ${
+                  mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                }`}
+                style={{ transitionDelay: mobileOpen ? `${i * 70 + 80}ms` : '0ms' }}
+              >
+                <span className="text-xl font-semibold text-foreground/95 group-hover:text-accent transition-colors">
+                  {link.label}
+                </span>
+                <span className="text-xs font-mono text-muted-foreground group-hover:text-accent transition-colors">
+                  0{i + 1}
+                </span>
+              </a>
+            ))}
+
+            <a
+              href="mailto:karkibri2073@gmail.com"
+              onClick={() => setMobileOpen(false)}
+              className={`mt-4 flex items-center justify-center gap-2 rounded-2xl px-8 py-4 bg-accent text-accent-foreground font-semibold text-base transition-all duration-300 hover:shadow-[0_0_30px_oklch(0.75_0.22_150_/_0.3)] ${
+                mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+              }`}
+              style={{ transitionDelay: mobileOpen ? `${navLinks.length * 70 + 100}ms` : '0ms' }}
+            >
+              <Zap className="w-4 h-4" />
+              Hire Me
+            </a>
+          </div>
+        </div>
       </div>
     </>
   )
