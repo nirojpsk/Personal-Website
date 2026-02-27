@@ -17,22 +17,26 @@ const heroModes = {
     status: 'status: building useful things',
     chip: 'UI + Backend flow',
     image: '/IMG_6173.jpg',
+    dots: ['bg-red-400/70', 'bg-yellow-400/70', 'bg-sky-400/70'],
   },
   play: {
     label: 'Play Mode',
     status: 'status: shipping fun interactions',
     chip: 'Animation + motion',
     image: '/IMG_6172.jpg',
+    dots: ['bg-fuchsia-400/70', 'bg-violet-400/70', 'bg-cyan-400/70'],
   },
   ship: {
     label: 'Ship Mode',
     status: 'status: polishing and deploying',
     chip: 'Clean + production ready',
     image: '/IMG_6378.jpg',
+    dots: ['bg-emerald-400/70', 'bg-lime-400/70', 'bg-teal-400/70'],
   },
 } as const
 
 type HeroMode = keyof typeof heroModes
+const heroModeImages = Object.values(heroModes).map((mode) => mode.image)
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
@@ -81,6 +85,14 @@ export default function Hero() {
     return () => {
       mediaQuery.removeEventListener('change', handleMediaChange)
     }
+  }, [])
+
+  useEffect(() => {
+    heroModeImages.forEach((src) => {
+      const image = new window.Image()
+      image.src = src
+      image.decode?.().catch(() => {})
+    })
   }, [])
 
   const cycleMode = () => {
@@ -199,9 +211,9 @@ export default function Hero() {
           <div className="w-full rounded-2xl border border-border bg-card overflow-hidden shadow-[0_20px_40px_oklch(0_0_0_/_0.08)] max-w-xl mx-auto lg:max-w-none">
             <div className="px-4 py-3 border-b border-border flex items-center justify-between">
               <div className="flex gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
-                <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
-                <span className="w-2.5 h-2.5 rounded-full bg-sky-400/70" />
+                {heroModes[mode].dots.map((dotClass, index) => (
+                  <span key={index} className={`w-2.5 h-2.5 rounded-full ${dotClass}`} />
+                ))}
               </div>
               <p className="text-xs font-mono text-muted-foreground">niroj@portfolio</p>
             </div>
@@ -229,6 +241,9 @@ export default function Hero() {
                   src={heroModes[mode].image}
                   alt="Niroj profile photo"
                   className="w-full h-full object-cover object-center"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
                   onError={(event) => {
                     event.currentTarget.src = 'https://avatars.githubusercontent.com/nirojpsk?v=4'
                   }}
