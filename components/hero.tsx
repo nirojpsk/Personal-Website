@@ -16,16 +16,19 @@ const heroModes = {
     label: 'Build Mode',
     status: 'status: building useful things',
     chip: 'UI + Backend flow',
+    image: '/IMG_6173.jpg',
   },
   play: {
     label: 'Play Mode',
     status: 'status: shipping fun interactions',
     chip: 'Animation + motion',
+    image: '/IMG_6172.jpg',
   },
   ship: {
     label: 'Ship Mode',
     status: 'status: polishing and deploying',
     chip: 'Clean + production ready',
+    image: '/IMG_6378.jpg',
   },
 } as const
 
@@ -223,7 +226,7 @@ export default function Hero() {
                 onClick={cycleMode}
               >
                 <img
-                  src="/IMG_6173.jpg"
+                  src={heroModes[mode].image}
                   alt="Niroj profile photo"
                   className="w-full h-full object-cover object-center"
                   onError={(event) => {
