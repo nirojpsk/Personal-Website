@@ -127,7 +127,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
-              I am Niroj, a developer focused on practical UI, backend logic, and delightful
+              I am Pranit, a developer focused on practical UI, backend logic, and delightful
               interactions that feel smooth without overdesign.
             </p>
           </div>
