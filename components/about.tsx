@@ -121,7 +121,7 @@ export default function About() {
             <div className="grid grid-cols-3 gap-6 pt-8">
               {[
                 { value: 5, suffix: '+', label: 'Projects Built', icon: Rocket },
-                { value: 6, suffix: '+', label: 'Technologies', icon: Code2 },
+                { value: 6, suffix: '+', label: 'Tech', icon: Code2 },
                 { value: '∞', suffix: '', label: 'Cups of Coffee', icon: Coffee },
               ].map((stat, i) => (
                 <div
