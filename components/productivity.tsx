@@ -284,7 +284,7 @@ export default function Productivity() {
               </button>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row">
               <input
                 value={weatherInput}
                 onChange={(event) => setWeatherInput(event.target.value)}
@@ -294,11 +294,11 @@ export default function Productivity() {
                   }
                 }}
                 placeholder="Search city"
-                className="flex-1 rounded-xl border border-border bg-background px-3 py-2 text-sm"
+                className="w-full min-w-0 flex-1 rounded-xl border border-border bg-background px-3 py-2 text-sm"
               />
               <button
                 onClick={() => weatherInput.trim() && fetchWeather(weatherInput.trim())}
-                className="px-4 rounded-xl bg-accent text-accent-foreground text-sm font-medium inline-flex items-center gap-2"
+                className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2 text-sm font-medium text-accent-foreground sm:w-auto"
               >
                 <Search className="w-4 h-4" />
                 Search
