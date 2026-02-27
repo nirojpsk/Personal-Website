@@ -19,6 +19,10 @@ const sectionKeys: SectionKey[] = ['home', 'about', 'skills', 'projects', 'produ
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<SectionKey>('home')
+  const navigateToSection = (section: SectionKey) => {
+    setActiveSection(section)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   const activeSectionView = useMemo(() => {
     switch (activeSection) {
@@ -87,7 +91,7 @@ export default function Home() {
 
       if (href === '#') {
         event.preventDefault()
-        setActiveSection('home')
+        navigateToSection('home')
         return
       }
 
@@ -96,7 +100,7 @@ export default function Home() {
       if (!sectionKeys.includes(key)) return
 
       event.preventDefault()
-      setActiveSection(key)
+      navigateToSection(key)
     }
 
     document.addEventListener('click', handleSectionJump)
@@ -122,7 +126,7 @@ export default function Home() {
           </div>
         </main>
         <Footer />
-        <SectionDock activeSection={activeSection} onSelect={setActiveSection} />
+        <SectionDock activeSection={activeSection} onSelect={navigateToSection} />
       </div>
     </>
   )
