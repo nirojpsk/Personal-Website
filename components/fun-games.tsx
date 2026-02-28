@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useMemo, useState } from 'react'
-import { Dices, Puzzle, Keyboard, Grid3x3, Gamepad2, Shuffle } from 'lucide-react'
+import { Dices, Puzzle, Keyboard, Grid3x3, Gamepad2, Shuffle, ArrowUpRight } from 'lucide-react'
 
 type Game = {
   name: string
@@ -52,6 +52,7 @@ const games: Game[] = [
 export default function FunGames() {
   const [activeType, setActiveType] = useState<'all' | 'word' | 'puzzle' | 'arcade'>('all')
   const [picked, setPicked] = useState<Game | null>(null)
+  const [clickedCard, setClickedCard] = useState<string | null>(null)
 
   const filtered = useMemo(() => {
     if (activeType === 'all') return games
@@ -125,14 +126,29 @@ export default function FunGames() {
               href={game.href}
               target="_blank"
               rel="noreferrer"
-              className="group card-pop fun-card p-5 rounded-xl border border-border bg-card/70 hover:border-accent/40 transition-colors"
+              onMouseDown={() => setClickedCard(game.name)}
+              onMouseUp={() => setClickedCard(null)}
+              onMouseLeave={() => setClickedCard(null)}
+              onTouchStart={() => setClickedCard(game.name)}
+              onTouchEnd={() => setTimeout(() => setClickedCard(null), 140)}
+              className={`group card-pop fun-card p-5 rounded-xl border border-border bg-card/70 hover:border-accent/40 transition-colors ${
+                clickedCard === game.name ? 'fun-card-tap' : ''
+              }`}
             >
               <div className="fun-icon-wrap w-10 h-10 rounded-lg border border-border bg-background flex items-center justify-center mb-3">
                 <game.icon className="w-5 h-5 text-accent" />
               </div>
-              <h3 className="text-foreground font-semibold">{game.name}</h3>
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-foreground font-semibold">{game.name}</h3>
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground fun-go transition-all duration-200" />
+              </div>
               <p className="mt-1 text-sm text-muted-foreground">{game.description}</p>
-              <p className="mt-3 text-xs uppercase tracking-wider text-accent/80">{game.type}</p>
+              <div className="mt-3 flex items-center justify-between">
+                <p className="text-xs uppercase tracking-wider text-accent/80">{game.type}</p>
+                <span className="text-[10px] font-mono text-muted-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  click to play
+                </span>
+              </div>
             </a>
           ))}
         </div>

@@ -8,14 +8,15 @@ import Projects from '@/components/projects'
 import Productivity from '@/components/productivity'
 import FunGames from '@/components/fun-games'
 import Contact from '@/components/contact'
+import CvSection from '@/components/cv-section'
 import Footer from '@/components/footer'
 import ParticleBackground from '@/components/particle-background'
 import SectionDock from '@/components/section-dock'
 import { useCursorSpotlight, useTiltCard, useMagneticButton } from '@/hooks/use-interactions'
 import { useEffect, useMemo, useState } from 'react'
 
-type SectionKey = 'home' | 'about' | 'skills' | 'projects' | 'productivity' | 'fun' | 'contact'
-const sectionKeys: SectionKey[] = ['home', 'about', 'skills', 'projects', 'productivity', 'fun', 'contact']
+type SectionKey = 'home' | 'about' | 'skills' | 'projects' | 'productivity' | 'fun' | 'cv' | 'contact'
+const sectionKeys: SectionKey[] = ['home', 'about', 'skills', 'projects', 'productivity', 'fun', 'cv', 'contact']
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<SectionKey>('home')
@@ -36,6 +37,8 @@ export default function Home() {
         return <Productivity />
       case 'fun':
         return <FunGames />
+      case 'cv':
+        return <CvSection />
       case 'contact':
         return <Contact />
       default:

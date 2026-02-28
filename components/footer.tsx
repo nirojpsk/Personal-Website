@@ -15,6 +15,7 @@ const footerLinks = [
   { label: 'Projects', href: '#projects' },
   { label: 'Productivity', href: '#productivity' },
   { label: 'Fun', href: '#fun' },
+  { label: 'CV', href: '#cv' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -106,4 +107,3 @@ export default function Footer() {
     </footer>
   )
 }
-

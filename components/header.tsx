@@ -11,11 +11,12 @@ const navLinks = [
   { href: '#projects', label: 'Projects' },
   { href: '#productivity', label: 'Productivity' },
   { href: '#fun', label: 'Fun' },
+  { href: '#cv', label: 'CV' },
   { href: '#contact', label: 'Contact' },
 ]
 
 type HeaderProps = {
-  activeSection?: 'home' | 'about' | 'skills' | 'projects' | 'productivity' | 'fun' | 'contact'
+  activeSection?: 'home' | 'about' | 'skills' | 'projects' | 'productivity' | 'fun' | 'cv' | 'contact'
 }
 
 export default function Header({ activeSection }: HeaderProps) {
