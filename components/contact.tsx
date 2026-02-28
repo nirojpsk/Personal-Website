@@ -43,7 +43,7 @@ export default function Contact() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-10 md:space-y-16">
         {/* Section Heading */}
         <div className="reveal space-y-4">
-          <p className="font-mono text-accent text-sm tracking-widest">06. CONTACT</p>
+          <p className="font-mono text-accent text-sm tracking-widest">07. CONTACT</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
             Get In Touch
           </h2>
@@ -140,6 +140,7 @@ export default function Contact() {
                   { label: 'View Projects', href: '#projects' },
                   { label: 'Productivity Hub', href: '#productivity' },
                   { label: 'View Skills', href: '#skills' },
+                  { label: 'View CV', href: '#cv' },
                   { label: 'Play Games', href: '#fun' },
                   { label: 'About Me', href: '#about' },
                 ].map((link, i) => (

@@ -161,7 +161,7 @@ export default function CvSection() {
         >
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="space-y-1">
-              <p className="font-mono text-accent text-xs tracking-widest">07. CV</p>
+              <p className="font-mono text-accent text-xs tracking-widest">06. CV</p>
               <h2 className="text-xl sm:text-2xl font-bold text-foreground">CV Interactive Viewer</h2>
             </div>
             <div className="inline-flex items-center gap-2 rounded-xl border border-border bg-background/75 px-3 py-2 text-sm">
