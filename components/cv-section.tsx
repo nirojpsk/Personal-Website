@@ -268,12 +268,19 @@ export default function CvSection() {
               CV Live Canvas
             </div>
 
-            <iframe
-              title="Pranit Karki CV"
-              src={pdfSrc}
+            <object
+              data={pdfSrc}
+              type="application/pdf"
               className="w-full border-0 transition-all duration-300"
               style={{ height: `${viewerHeight}px` }}
-            />
+              aria-label="Pranit Karki CV preview"
+            >
+              <embed
+                src={pdfSrc}
+                type="application/pdf"
+                className="w-full h-full"
+              />
+            </object>
           </div>
         </div>
       </div>
