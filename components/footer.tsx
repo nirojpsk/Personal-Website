@@ -14,7 +14,6 @@ const footerLinks = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Productivity', href: '#productivity' },
-  { label: 'Fun', href: '#fun' },
   { label: 'CV', href: '#cv' },
   { label: 'Contact', href: '#contact' },
 ]

@@ -10,13 +10,21 @@ const navLinks = [
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
   { href: '#productivity', label: 'Productivity' },
-  { href: '#fun', label: 'Fun' },
   { href: '#cv', label: 'CV' },
   { href: '#contact', label: 'Contact' },
 ]
 
+const sectionNumbers: Record<string, string> = {
+  '#about': '01',
+  '#skills': '02',
+  '#projects': '03',
+  '#productivity': '04',
+  '#cv': '05',
+  '#contact': '06',
+}
+
 type HeaderProps = {
-  activeSection?: 'home' | 'about' | 'skills' | 'projects' | 'productivity' | 'fun' | 'cv' | 'contact'
+  activeSection?: 'home' | 'about' | 'skills' | 'projects' | 'productivity' | 'cv' | 'contact'
 }
 
 export default function Header({ activeSection }: HeaderProps) {
@@ -158,7 +166,7 @@ export default function Header({ activeSection }: HeaderProps) {
                   {link.label}
                 </span>
                 <span className="text-xs font-mono text-muted-foreground group-hover:text-accent transition-colors">
-                  0{i + 1}
+                  {sectionNumbers[link.href] ?? `0${i + 1}`}
                 </span>
               </a>
             ))}

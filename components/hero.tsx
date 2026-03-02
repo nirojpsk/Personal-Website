@@ -148,11 +148,11 @@ export default function Hero() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
-              href="#fun"
+              href="#cv"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border bg-card text-foreground font-semibold text-sm hover:border-accent/60 transition-colors"
             >
               <Code2 className="w-4 h-4" />
-              Fun Zone
+              View CV
             </a>
           </div>
 

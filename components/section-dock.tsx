@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import { House, User, Wrench, FolderGit2, BrainCircuit, Gamepad2, FileText, Mail } from 'lucide-react'
+import { House, User, Wrench, FolderGit2, BrainCircuit, FileText, Mail } from 'lucide-react'
 
-type SectionKey = 'home' | 'about' | 'skills' | 'projects' | 'productivity' | 'fun' | 'cv' | 'contact'
+type SectionKey = 'home' | 'about' | 'skills' | 'projects' | 'productivity' | 'cv' | 'contact'
 
 type SectionDockProps = {
   activeSection: SectionKey
@@ -16,7 +16,6 @@ const items: Array<{ key: SectionKey; label: string; icon: React.ComponentType<{
   { key: 'skills', label: 'Skills', icon: Wrench },
   { key: 'projects', label: 'Projects', icon: FolderGit2 },
   { key: 'productivity', label: 'Productivity', icon: BrainCircuit },
-  { key: 'fun', label: 'Fun', icon: Gamepad2 },
   { key: 'cv', label: 'CV', icon: FileText },
   { key: 'contact', label: 'Contact', icon: Mail },
 ]
