@@ -26,6 +26,7 @@ export default function CvSection() {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
   const [viewerHeight, setViewerHeight] = useState(680)
   const [viewerBox, setViewerBox] = useState({ width: 0, height: 0 })
   const [fitMode, setFitMode] = useState<'page' | 'width'>('page')
@@ -77,6 +78,7 @@ export default function CvSection() {
   useEffect(() => {
     const updateHeight = () => {
       const isMobile = window.innerWidth < 640
+      setIsMobileViewport(window.innerWidth < 768)
       if (isFullscreen) {
         setViewerHeight(window.innerHeight)
         return
@@ -444,21 +446,35 @@ export default function CvSection() {
             )}
 
             {isFullscreen && (
-              <div className="absolute top-3 right-3 z-20 flex items-center gap-2">
+              <div
+                className={`absolute z-20 flex items-center gap-2 ${
+                  isMobileViewport ? 'bottom-4 right-4' : 'top-3 right-3'
+                }`}
+              >
                 <button
                   onClick={toggleFullscreen}
-                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/80 px-3 py-2 text-xs font-mono text-foreground hover:border-accent/50"
+                  className={`inline-flex items-center justify-center rounded-lg border border-border bg-background/85 text-foreground hover:border-accent/50 ${
+                    isMobileViewport
+                      ? 'h-11 w-11 backdrop-blur-md'
+                      : 'gap-2 px-3 py-2 text-xs font-mono'
+                  }`}
+                  aria-label="Exit fullscreen"
                 >
-                  <Expand className="w-3.5 h-3.5" />
-                  Exit Fullscreen
+                  <Expand className={isMobileViewport ? 'w-4 h-4' : 'w-3.5 h-3.5'} />
+                  {!isMobileViewport && 'Exit Fullscreen'}
                 </button>
                 <a
                   href="/cv.pdf"
                   download
-                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/80 px-3 py-2 text-xs font-mono text-foreground hover:border-accent/50"
+                  className={`inline-flex items-center justify-center rounded-lg border border-border bg-background/85 text-foreground hover:border-accent/50 ${
+                    isMobileViewport
+                      ? 'h-11 w-11 backdrop-blur-md'
+                      : 'gap-2 px-3 py-2 text-xs font-mono'
+                  }`}
+                  aria-label="Download CV"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  Download
+                  <Download className={isMobileViewport ? 'w-4 h-4' : 'w-3.5 h-3.5'} />
+                  {!isMobileViewport && 'Download'}
                 </a>
               </div>
             )}
