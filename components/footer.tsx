@@ -30,10 +30,10 @@ export default function Footer() {
       <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-10">
         <button
           onClick={scrollToTop}
-          className="magnetic-btn p-3 bg-accent text-accent-foreground rounded-full transition-all duration-300 group hover:shadow-[0_0_25px_oklch(0.75_0.22_150_/_0.4)]"
+          className="magnetic-btn group rounded-full border border-border bg-card/90 p-3 text-foreground shadow-[0_12px_28px_oklch(0_0_0_/_0.18)] transition-all duration-300 hover:border-accent/35 hover:bg-card"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+          <ArrowUp className="w-5 h-5 text-muted-foreground group-hover:-translate-y-0.5 transition-transform duration-200" />
         </button>
       </div>
 
