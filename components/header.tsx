@@ -75,7 +75,7 @@ export default function Header({ activeSection }: HeaderProps) {
                 {link.label}
                 {/* Animated underline */}
                 <span
-                  className={`absolute bottom-0 left-1/2 h-[2px] bg-accent -translate-x-1/2 transition-all duration-300 shadow-[0_0_8px_var(--neon)] ${
+                  className={`absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-foreground/70 transition-all duration-300 ${
                     activeSection === link.href.slice(1) ? 'w-3/4' : 'w-0 group-hover:w-3/4'
                   }`}
                 />
