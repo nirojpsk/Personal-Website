@@ -298,9 +298,9 @@ export default function Productivity() {
               />
               <button
                 onClick={() => weatherInput.trim() && fetchWeather(weatherInput.trim())}
-                className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2 text-sm font-medium text-accent-foreground sm:w-auto"
+                className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-xl border border-border bg-card/85 px-4 py-2 text-sm font-medium text-foreground shadow-[0_10px_24px_oklch(0_0_0_/_0.14)] transition-all duration-300 hover:border-accent/35 hover:bg-card sm:w-auto"
               >
-                <Search className="w-4 h-4" />
+                <Search className="w-4 h-4 text-muted-foreground" />
                 Search
               </button>
             </div>
