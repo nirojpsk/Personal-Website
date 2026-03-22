@@ -148,7 +148,7 @@ export default function Contact() {
                     href={link.href}
                     className="group flex items-center gap-3 p-2.5 rounded-lg hover:bg-secondary/50 transition-all duration-200"
                   >
-                    <ExternalLink className="w-4 h-4 text-accent group-hover:translate-x-0.5 transition-transform duration-200" />
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-0.5 transition-all duration-200" />
                     <span className="text-sm text-foreground group-hover:text-accent transition-colors duration-200">
                       {link.label}
                     </span>
