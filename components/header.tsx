@@ -103,7 +103,7 @@ export default function Header({ activeSection }: HeaderProps) {
             {/* CTA */}
             <a
               href="mailto:karkibri2073@gmail.com"
-              className="magnetic-btn hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-foreground rounded-xl text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_20px_oklch(0.75_0.22_150_/_0.3)]"
+              className="magnetic-btn hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-xl text-sm font-semibold transition-all duration-300 hover:opacity-90"
             >
               <Briefcase className="w-3.5 h-3.5" />
               Hire Me
@@ -174,7 +174,7 @@ export default function Header({ activeSection }: HeaderProps) {
             <a
               href="mailto:karkibri2073@gmail.com"
               onClick={() => setMobileOpen(false)}
-              className={`mt-4 flex items-center justify-center gap-2 rounded-2xl px-8 py-4 bg-accent text-accent-foreground font-semibold text-base transition-all duration-300 hover:shadow-[0_0_30px_oklch(0.75_0.22_150_/_0.3)] ${
+              className={`mt-4 flex items-center justify-center gap-2 rounded-2xl px-8 py-4 bg-foreground text-background font-semibold text-base transition-all duration-300 hover:opacity-90 ${
                 mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}
               style={{ transitionDelay: mobileOpen ? `${navLinks.length * 70 + 100}ms` : '0ms' }}
