@@ -105,7 +105,7 @@ export default function Header({ activeSection }: HeaderProps) {
               href="mailto:karkibri2073@gmail.com"
               className="magnetic-btn hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-xl text-sm font-semibold transition-all duration-300 hover:opacity-90"
             >
-              <Briefcase className="w-3.5 h-3.5" />
+              <Briefcase className="w-3.5 h-3.5 text-[var(--neon-cyan)]" />
               Hire Me
             </a>
 
@@ -179,7 +179,7 @@ export default function Header({ activeSection }: HeaderProps) {
               }`}
               style={{ transitionDelay: mobileOpen ? `${navLinks.length * 70 + 100}ms` : '0ms' }}
             >
-              <Briefcase className="w-4 h-4" />
+              <Briefcase className="w-4 h-4 text-[var(--neon-cyan)]" />
               Hire Me
             </a>
           </div>
