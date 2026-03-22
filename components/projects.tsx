@@ -226,11 +226,11 @@ export default function Projects() {
                         href={project.liveLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="magnetic-btn group/link inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-xl text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_20px_oklch(0.75_0.22_150_/_0.25)]"
+                        className="magnetic-btn group/link inline-flex items-center gap-2 rounded-xl border border-border bg-card/85 px-6 py-3 text-sm font-semibold text-foreground shadow-[0_12px_28px_oklch(0_0_0_/_0.16)] transition-all duration-300 hover:border-accent/35 hover:bg-card"
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <ExternalLink className="w-4 h-4 text-muted-foreground" />
                         Live Demo
-                        <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" />
+                        <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" />
                       </a>
                       <a
                         href={project.githubLink}
