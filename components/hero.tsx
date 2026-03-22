@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Braces, Code2, Terminal, Zap } from 'lucide-react'
+import { ArrowRight, Braces, Code2, FolderOpen, Terminal } from 'lucide-react'
 
 const roles = [
   'Fullstack Web Developer',
@@ -141,11 +141,11 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               href="#projects"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent text-accent-foreground font-semibold text-sm"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card/85 px-6 py-3 text-sm font-semibold text-foreground shadow-[0_12px_28px_oklch(0_0_0_/_0.16)] transition-all duration-300 hover:border-accent/35 hover:bg-card"
             >
-              <Zap className="w-4 h-4" />
+              <FolderOpen className="w-4 h-4 text-muted-foreground" />
               View Projects
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-muted-foreground" />
             </Link>
             <a
               href="#cv"
