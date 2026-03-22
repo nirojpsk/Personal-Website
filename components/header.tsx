@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Sun, Moon, Briefcase } from 'lucide-react'
+import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
 const navLinks = [
@@ -103,9 +103,9 @@ export default function Header({ activeSection }: HeaderProps) {
             {/* CTA */}
             <a
               href="mailto:karkibri2073@gmail.com"
-              className="magnetic-btn hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-xl text-sm font-semibold transition-all duration-300 hover:opacity-90"
+              className="magnetic-btn hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border bg-card/80 text-foreground text-sm font-semibold shadow-[0_10px_24px_oklch(0_0_0_/_0.14)] transition-all duration-300 hover:border-accent/35 hover:bg-card"
             >
-              <Briefcase className="w-3.5 h-3.5 text-[var(--neon-cyan)]" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground" />
               Hire Me
             </a>
 
@@ -174,12 +174,12 @@ export default function Header({ activeSection }: HeaderProps) {
             <a
               href="mailto:karkibri2073@gmail.com"
               onClick={() => setMobileOpen(false)}
-              className={`mt-4 flex items-center justify-center gap-2 rounded-2xl px-8 py-4 bg-foreground text-background font-semibold text-base transition-all duration-300 hover:opacity-90 ${
+              className={`mt-4 flex items-center justify-center gap-2 rounded-2xl border border-border bg-card/85 px-8 py-4 text-foreground font-semibold text-base shadow-[0_12px_30px_oklch(0_0_0_/_0.18)] transition-all duration-300 hover:border-accent/35 hover:bg-card ${
                 mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}
               style={{ transitionDelay: mobileOpen ? `${navLinks.length * 70 + 100}ms` : '0ms' }}
             >
-              <Briefcase className="w-4 h-4 text-[var(--neon-cyan)]" />
+              <ArrowUpRight className="w-4 h-4 text-muted-foreground" />
               Hire Me
             </a>
           </div>
