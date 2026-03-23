@@ -88,6 +88,10 @@ const fallbackProjects: Project[] = [
 ]
 
 const cardColors = ['var(--neon)', 'var(--neon-purple)', 'var(--neon-cyan)', 'var(--neon-pink)']
+const permanentFeaturedRepoKeywords = ['devhire', 'todo']
+const permanentLiveLinks: Record<string, string> = {
+  devhire: 'https://devhire-plum.vercel.app',
+}
 
 function toTitle(input: string) {
   return input
@@ -97,22 +101,79 @@ function toTitle(input: string) {
     .replace(/\b\w/g, (char) => char.toUpperCase())
 }
 
+function normalizeRepoName(input: string) {
+  return input.toLowerCase().replace(/[-_\s]+/g, '')
+}
+
+function isPermanentFeaturedRepo(repoName: string, keyword: string) {
+  const normalizedName = normalizeRepoName(repoName)
+  const normalizedKeyword = normalizeRepoName(keyword)
+  return normalizedName === normalizedKeyword || normalizedName.includes(normalizedKeyword)
+}
+
+function resolveLiveLink(repo: GithubRepo) {
+  for (const [keyword, liveLink] of Object.entries(permanentLiveLinks)) {
+    if (isPermanentFeaturedRepo(repo.name, keyword)) {
+      return liveLink
+    }
+  }
+
+  return repo.homepage && repo.homepage.startsWith('http') ? repo.homepage : repo.html_url
+}
+
 function mapReposToProjects(repos: GithubRepo[]): Project[] {
-  return repos
+  type RepoProject = Project & { repoId: number; repoName: string }
+
+  const mappedProjects: RepoProject[] = repos
     .filter((repo) => !repo.fork)
-    .map((repo, index) => {
+    .map((repo) => {
       const language = repo.language ? [repo.language] : []
       return {
+        repoId: repo.id,
+        repoName: repo.name,
         title: toTitle(repo.name),
         description: repo.description || 'Project from my GitHub profile.',
         technologies: [...language, 'GitHub'],
-        liveLink: repo.homepage && repo.homepage.startsWith('http') ? repo.homepage : repo.html_url,
+        liveLink: resolveLiveLink(repo),
         githubLink: repo.html_url,
-        featured: index < 2,
-        color: cardColors[index % cardColors.length],
+        featured: false,
+        color: 'var(--neon)',
       }
     })
-    .slice(0, 8)
+
+  const usedRepoIds = new Set<number>()
+  const permanentFeaturedProjects: RepoProject[] = []
+
+  for (const keyword of permanentFeaturedRepoKeywords) {
+    const matchedProject = mappedProjects.find(
+      (project) =>
+        !usedRepoIds.has(project.repoId) && isPermanentFeaturedRepo(project.repoName, keyword)
+    )
+
+    if (!matchedProject) continue
+
+    usedRepoIds.add(matchedProject.repoId)
+    permanentFeaturedProjects.push(matchedProject)
+  }
+
+  const remainingProjects = mappedProjects.filter((project) => !usedRepoIds.has(project.repoId))
+  const fallbackFeaturedCount = Math.max(0, 2 - permanentFeaturedProjects.length)
+  const fallbackFeaturedProjects = remainingProjects.slice(0, fallbackFeaturedCount)
+  const otherProjects = remainingProjects.slice(fallbackFeaturedCount)
+
+  const orderedProjects = [
+    ...permanentFeaturedProjects.map((project) => ({ ...project, featured: true })),
+    ...fallbackFeaturedProjects.map((project) => ({ ...project, featured: true })),
+    ...otherProjects.map((project) => ({ ...project, featured: false })),
+  ].slice(0, 8)
+
+  return orderedProjects.map((project, index) => {
+    const { repoId: _repoId, repoName: _repoName, ...projectData } = project
+    return {
+      ...projectData,
+      color: cardColors[index % cardColors.length],
+    }
+  })
 }
 
 export default function Projects() {
@@ -123,7 +184,7 @@ export default function Projects() {
 
     const fetchRepos = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/nirojpsk/repos?sort=updated&per_page=12')
+        const response = await fetch('https://api.github.com/users/nirojpsk/repos?sort=updated&per_page=100')
         if (!response.ok) return
         const repos = (await response.json()) as GithubRepo[]
         const mappedProjects = mapReposToProjects(repos)
