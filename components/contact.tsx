@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Mail, Github, Linkedin, ExternalLink, ArrowUpRight, Send, Sparkles, MessageSquare } from 'lucide-react'
+import { Mail, Github, Linkedin, ExternalLink, ArrowUpRight, Send, MessageSquare } from 'lucide-react'
 
 const socialLinks = [
   {
@@ -112,9 +112,11 @@ export default function Contact() {
               </div>
 
               <div className="space-y-3 relative">
-                <div className="inline-flex items-center gap-2 text-accent mb-2">
-                  <Sparkles className="w-4 h-4" />
-                  <span className="font-mono text-xs tracking-widest">LET&apos;S COLLABORATE</span>
+                <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-border/80 bg-secondary/40 px-3 py-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-foreground/65" />
+                  <span className="font-mono text-[11px] tracking-[0.08em] text-muted-foreground">
+                    Let&apos;s Collaborate
+                  </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-foreground">
                   Build Something Amazing

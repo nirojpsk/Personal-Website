@@ -44,8 +44,8 @@ export default function Footer() {
               <img src="/logo.svg" alt="Pranit Karki logo" className="logo-mark h-10 w-auto" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Fullstack web developer crafting modern, dynamic web experiences
-              from Jhapa, Nepal.
+              I’m Pranit, a junior full-stack developer focused on building responsive frontend
+              interfaces, REST APIs, authentication systems, and MongoDB-backed web applications.
             </p>
           </div>
 
@@ -100,7 +100,6 @@ export default function Footer() {
           <p className="text-muted-foreground text-sm">
             &copy; {currentYear} Pranit Karki. All rights reserved.
           </p>
-          <p className="text-muted-foreground text-sm">Built with React and Next.js</p>
         </div>
       </div>
     </footer>

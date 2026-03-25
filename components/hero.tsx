@@ -5,29 +5,29 @@ import Link from 'next/link'
 import { ArrowRight, Braces, Code2, FolderOpen, Terminal } from 'lucide-react'
 
 const roles = [
-  'Fullstack Web Developer',
-  'React + Next.js Builder',
-  'MERN Stack Learner',
-  'Clean UI Implementer',
+  'Full-Stack Web Developer',
+  'React & Next.js Developer',
+  'Junior MERN Stack Developer',
+  'UI-Focused Problem Solver',
 ]
 
 const heroModes = {
   build: {
-    label: 'Build Mode',
+    label: 'Build',
     status: 'status: building useful things',
     chip: 'UI + Backend flow',
     image: '/IMG_6173.jpg',
     dots: ['bg-red-400/70', 'bg-yellow-400/70', 'bg-sky-400/70'],
   },
   play: {
-    label: 'Play Mode',
+    label: 'Learn',
     status: 'status: shipping fun interactions',
     chip: 'Animation + motion',
     image: '/IMG_6172.jpg',
     dots: ['bg-fuchsia-400/70', 'bg-violet-400/70', 'bg-cyan-400/70'],
   },
   ship: {
-    label: 'Ship Mode',
+    label: 'Deploy',
     status: 'status: polishing and deploying',
     chip: 'Clean + production ready',
     image: '/IMG_6378.jpg',
@@ -106,29 +106,26 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen pt-24 pb-24 md:pt-28 md:pb-16 flex items-start lg:items-center overflow-x-clip">
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,transparent_0,transparent_39px,color-mix(in_oklch,var(--border)_80%,transparent)_40px),linear-gradient(to_bottom,transparent_0,transparent_39px,color-mix(in_oklch,var(--border)_80%,transparent)_40px)] bg-[size:40px_40px] opacity-40" />
-      <span className="code-float top-[18%] left-[8%] hidden sm:block">{'</>'}</span>
-      <span className="code-float top-[30%] right-[10%] hidden md:block" style={{ animationDelay: '1.5s' }}>{'const app = () => {}'}</span>
-      <span className="code-float bottom-[20%] left-[12%] hidden md:block" style={{ animationDelay: '3s' }}>{'npm run dev'}</span>
-      <span className="code-float bottom-[26%] right-[14%] hidden lg:block" style={{ animationDelay: '2.2s' }}>{'git push origin main'}</span>
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,transparent_0,transparent_39px,color-mix(in_oklch,var(--border)_80%,transparent)_40px),linear-gradient(to_bottom,transparent_0,transparent_39px,color-mix(in_oklch,var(--border)_80%,transparent)_40px)] bg-[size:40px_40px] opacity-25" />
 
       <div className="max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start lg:items-center overflow-x-clip">
         <div className="order-2 lg:order-1 min-w-0 space-y-5 sm:space-y-7 reveal visible">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card text-xs font-mono text-muted-foreground">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            Available for projects
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border/80 bg-card/75 text-[11px] font-mono uppercase tracking-[0.08em] text-muted-foreground">
+            <span className="w-2 h-2 rounded-full bg-emerald-400/85" />
+            Open to opportunities
           </div>
 
-          <div className="space-y-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] text-foreground">
-              Build fast, clean,
-              <br />
-              <span className="text-accent">web-first products</span>
+          <div className="space-y-5">
+            <h1 className="max-w-2xl text-[clamp(2.25rem,5.5vw,4.1rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+              Junior MERN Stack Developer
+              <span className="mt-3 block text-[0.58em] font-medium leading-[1.25] tracking-[-0.01em] text-foreground/80">
+                Building practical full-stack web applications
+              </span>
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
-              I am Pranit, a developer focused on practical UI, backend logic, and delightful
-              interactions that feel smooth without overdesign.
+              I’m Pranit, a junior full-stack developer focused on building responsive frontend
+              interfaces, REST APIs, authentication systems, and MongoDB-backed web applications.
             </p>
           </div>
 
@@ -157,7 +154,7 @@ export default function Hero() {
           </div>
 
           <div className="sm:hidden flex flex-wrap gap-2">
-            {['React', 'Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Express'].map((chip) => (
+            {['React', 'Redux Toolkit', 'RTX Query', 'Node.js', 'MongoDB', 'JWT'].map((chip) => (
               <span key={chip} className="dev-chip">
                 {chip}
               </span>
@@ -168,21 +165,21 @@ export default function Hero() {
             <div className="dev-marquee-track">
               {[
                 'React',
-                'Next.js',
-                'TypeScript',
+                'Redux Toolkit',
+                'RTX Query',
                 'Node.js',
                 'MongoDB',
                 'Express',
-                'Tailwind',
+                'JWT',
                 'REST API',
                 'GitHub',
                 'React',
-                'Next.js',
-                'TypeScript',
+                'Redux Toolkit',
+                'RTX Query',
                 'Node.js',
                 'MongoDB',
                 'Express',
-                'Tailwind',
+                'JWT',
                 'REST API',
                 'GitHub',
               ].map((chip, index) => (
@@ -215,7 +212,6 @@ export default function Hero() {
                   <span key={index} className={`w-2.5 h-2.5 rounded-full ${dotClass}`} />
                 ))}
               </div>
-              <p className="text-xs font-mono text-muted-foreground">niroj@portfolio</p>
             </div>
 
             <div className="p-4 md:p-6 space-y-5">
@@ -252,7 +248,7 @@ export default function Hero() {
                   {heroModes[mode].label}
                 </div>
                 <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wide border border-border bg-background/75 text-foreground">
-                  click me
+                  switch mode
                 </div>
 
                 {Array.from({ length: 6 }).map((_, index) => (
@@ -275,7 +271,7 @@ export default function Hero() {
                   <Braces className="w-4 h-4 text-accent" />
                   {heroModes[mode].status}
                 </p>
-                <p className="mt-2">location: Dharan, Nepal</p>
+                <p className="mt-2">location: Originally from Jhapa, based in Kathmandu, Nepal</p>
                 <p className="mt-2 text-accent/80">{heroModes[mode].chip}</p>
               </div>
 

@@ -82,7 +82,7 @@ function AnimatedCounter({ target, suffix = '' }: { target: number | string; suf
   return (
     <div
       ref={ref}
-      className={`font-bold text-accent neon-text font-mono leading-none ${
+      className={`font-semibold text-foreground font-mono leading-none tracking-tight ${
         isNumber ? 'text-4xl' : 'text-3xl sm:text-4xl'
       }`}
     >
@@ -130,11 +130,15 @@ export default function About() {
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="spotlight-container bg-card/50 border border-border rounded-xl p-5 text-center hover:border-accent/40 transition-all duration-300 overflow-hidden"
+                  className="bg-card/65 border border-border/80 rounded-xl p-5 text-center transition-all duration-300 hover:border-border hover:bg-card/80"
                 >
-                  <stat.icon className="w-5 h-5 text-accent/60 mx-auto mb-2" />
+                  <div className="mx-auto mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/70">
+                    <stat.icon className="w-4 h-4 text-muted-foreground" />
+                  </div>
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                  <p className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">{stat.label}</p>
+                  <p className="mt-2 text-[11px] font-mono uppercase tracking-[0.08em] text-muted-foreground">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>

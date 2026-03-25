@@ -106,7 +106,7 @@ export default function Header({ activeSection }: HeaderProps) {
               className="magnetic-btn hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border bg-card/80 text-foreground text-sm font-semibold shadow-[0_10px_24px_oklch(0_0_0_/_0.14)] transition-all duration-300 hover:border-accent/35 hover:bg-card"
             >
               <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground" />
-              Hire Me
+              Contact Me
             </a>
 
             {/* Mobile Toggle */}
@@ -180,7 +180,7 @@ export default function Header({ activeSection }: HeaderProps) {
               style={{ transitionDelay: mobileOpen ? `${navLinks.length * 70 + 100}ms` : '0ms' }}
             >
               <ArrowUpRight className="w-4 h-4 text-muted-foreground" />
-              Hire Me
+              Contact Me
             </a>
           </div>
         </div>
@@ -188,4 +188,3 @@ export default function Header({ activeSection }: HeaderProps) {
     </>
   )
 }
-

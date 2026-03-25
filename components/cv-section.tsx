@@ -30,7 +30,7 @@ export default function CvSection() {
   const [viewerHeight, setViewerHeight] = useState(680)
   const [viewerBox, setViewerBox] = useState({ width: 0, height: 0 })
   const [fitMode, setFitMode] = useState<'page' | 'width'>('page')
-  const [qualityMode, setQualityMode] = useState<'auto' | 'high'>('auto')
+  const [qualityMode, setQualityMode] = useState<'auto' | 'high'>('high')
   const [showHints, setShowHints] = useState(false)
   const [hotkeysEnabled, setHotkeysEnabled] = useState(false)
   const [pdfDoc, setPdfDoc] = useState<any>(null)
@@ -169,7 +169,7 @@ export default function CvSection() {
         setScale(1.15)
         setMode('focus')
         setFitMode('page')
-        setQualityMode('auto')
+        setQualityMode('high')
       }
       if (event.key.toLowerCase() === 'w') {
         event.preventDefault()
@@ -208,32 +208,53 @@ export default function CvSection() {
         const fitScale = fitMode === 'width' ? fitWidthScale : Math.min(fitWidthScale, fitHeightScale)
         const interactiveScale = mode === 'reader' && !isFullscreen ? scale : 1
         const targetScale = Math.max(0.25, fitScale * interactiveScale)
-        const clarityBoost = targetScale < 0.85 ? Math.min(2.2, 0.85 / targetScale) : 1
-        const renderScale = targetScale * clarityBoost
-        const viewport = currentPage.getViewport({ scale: renderScale })
+        const viewport = currentPage.getViewport({ scale: targetScale })
 
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
         if (!context) return
 
         const isMobile = window.innerWidth < 768
+        const dprBase = window.devicePixelRatio || 1
+        const qualityBoost =
+          qualityMode === 'high'
+            ? isMobile
+              ? 1.55
+              : 1.8
+            : isMobile
+              ? 1.15
+              : 1.35
         const dprCap =
           qualityMode === 'high'
             ? isMobile
-              ? 3
-              : 4
+              ? 3.2
+              : 4.6
             : isMobile
-              ? 2.5
-              : viewerBox.width < 900
-                ? 3.2
-                : 2.7
-        const dpr = Math.min(window.devicePixelRatio || 1, dprCap)
-        canvas.width = Math.floor(viewport.width * dpr)
-        canvas.height = Math.floor(viewport.height * dpr)
-        canvas.style.width = `${Math.floor(viewport.width / clarityBoost)}px`
-        canvas.style.height = `${Math.floor(viewport.height / clarityBoost)}px`
+              ? 2.4
+              : 3.1
+        let renderPixelRatio = Math.min(dprBase * qualityBoost, dprCap)
+        const maxPixels =
+          qualityMode === 'high'
+            ? isMobile
+              ? 10_000_000
+              : 18_000_000
+            : isMobile
+              ? 7_500_000
+              : 12_000_000
+        const projectedPixels = viewport.width * viewport.height * renderPixelRatio * renderPixelRatio
+        if (projectedPixels > maxPixels) {
+          const safeRatio = Math.sqrt(maxPixels / Math.max(1, viewport.width * viewport.height))
+          renderPixelRatio = Math.max(1, safeRatio)
+        }
 
-        context.setTransform(dpr, 0, 0, dpr, 0, 0)
+        canvas.width = Math.floor(viewport.width * renderPixelRatio)
+        canvas.height = Math.floor(viewport.height * renderPixelRatio)
+        canvas.style.width = `${Math.floor(viewport.width)}px`
+        canvas.style.height = `${Math.floor(viewport.height)}px`
+
+        context.setTransform(renderPixelRatio, 0, 0, renderPixelRatio, 0, 0)
+        context.imageSmoothingEnabled = true
+        context.imageSmoothingQuality = 'high'
         renderTask = currentPage.render({ canvasContext: context, viewport })
         await renderTask.promise
       } catch {
@@ -385,7 +406,7 @@ export default function CvSection() {
                 setScale(1.15)
                 setMode('focus')
                 setFitMode('page')
-                setQualityMode('auto')
+                setQualityMode('high')
               }}
               className={`${pillBtn} inline-flex items-center justify-center gap-1.5 border-border bg-background/75 text-muted-foreground hover:text-foreground`}
             >
@@ -495,7 +516,7 @@ export default function CvSection() {
 
               {!pdfLoading && useIframeFallback && (
                 <iframe
-                  src="/cv.pdf#toolbar=0&navpanes=0&zoom=page-fit&view=FitH"
+                  src="/cv.pdf#toolbar=0&navpanes=0&zoom=page-width&view=FitH"
                   title="Pranit Karki CV preview"
                   className="w-full h-full rounded-md border border-border bg-white"
                 />

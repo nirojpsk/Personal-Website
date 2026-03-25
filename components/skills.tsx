@@ -337,13 +337,13 @@ export default function Skills() {
               />
             </div>
 
-            <div className="p-3 bg-accent/10 rounded-xl border border-accent/20 shrink-0">
-              <BookOpen className="w-6 h-6 text-accent" />
+            <div className="shrink-0 rounded-lg border border-border bg-background/70 p-2.5">
+              <BookOpen className="h-5 w-5 text-muted-foreground" />
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                 Always Learning
-                <Cpu className="w-4 h-4 text-[var(--neon-cyan)]" style={{ animation: 'spin-slow 6s linear infinite' }} />
+                <Cpu className="h-4 w-4 text-muted-foreground/80" style={{ animation: 'spin-slow 6s linear infinite' }} />
               </h3>
               <p className="text-muted-foreground leading-relaxed">
                 I&apos;m committed to continuous learning and staying updated with
